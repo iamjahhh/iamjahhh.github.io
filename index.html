@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Testing Page</title>
+    <title>Student Registration Form</title>
     <style>
         * {
             margin: 0;
@@ -19,6 +19,7 @@
             min-height: 100vh;
             background: #0d1117;
             color: #e6edf3;
+            padding: 2rem 1rem;
         }
 
         .container {
@@ -26,220 +27,635 @@
             padding: 2rem;
             border-radius: 6px;
             border: 1px solid #30363d;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
+            max-width: 600px;
+            width: 100%;
         }
 
         .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+            text-align: center;
             margin-bottom: 2rem;
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px solid #21262d;
         }
 
         .github-logo {
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
         }
 
         h1 {
             color: #e6edf3;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        .like-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 2rem 0;
-        }
-
-        .counter-display {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .counter {
-            font-size: 3.5rem;
-            font-weight: 600;
-            color: #e6edf3;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .counter-label {
+        .subtitle {
             color: #8b949e;
             font-size: 0.875rem;
-            margin-top: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
-        .button-group {
-            display: flex;
-            gap: 1rem;
+        .topic-info {
             margin-top: 1rem;
-        }
-
-        .like-button {
-            background: #238636;
-            color: #ffffff;
-            border: 1px solid rgba(240, 246, 252, 0.1);
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 500;
+            padding: 1rem;
+            background: #0d1117;
             border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: inherit;
+            border: 1px solid #21262d;
         }
 
-        .like-button:hover {
-            background: #2ea043;
-            border-color: rgba(240, 246, 252, 0.2);
-        }
-
-        .like-button:active {
-            background: #2c974b;
-            transform: scale(0.98);
-        }
-
-        .like-button.liked {
-            animation: pulse 0.3s ease;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .heart-icon {
-            width: 20px;
-            height: 20px;
-            transition: transform 0.2s ease;
-        }
-
-        .like-button:hover .heart-icon {
-            transform: scale(1.1);
-        }
-
-        .reset-button {
-            background: transparent;
-            color: #8b949e;
-            border: 1px solid #30363d;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
+        .topic-title {
+            color: #58a6ff;
+            font-size: 0.875rem;
             font-weight: 500;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
+            margin-bottom: 0.5rem;
         }
 
-        .reset-button:hover {
-            background: #21262d;
-            border-color: #8b949e;
+        .speaker-name {
             color: #e6edf3;
-        }
-
-        .reset-button:active {
-            transform: scale(0.98);
+            font-size: 0.8rem;
         }
 
         .footer {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             padding-top: 1rem;
             border-top: 1px solid #21262d;
-            color: #8b949e;
-            font-size: 0.75rem;
+            text-align: center;
         }
 
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #8b949e;
+            font-size: 0.75rem;
+            background: #0d1117;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #21262d;
+        }
+
+        .footer-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .footer-text {
+            color: #8b949e;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: #e6edf3;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 0.375rem;
+        }
+
+        .required {
+            color: #f85149;
+        }
+
+        input, select {
+            width: 100%;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            padding: 0.5rem 0.625rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #388bfd;
+            box-shadow: 0 0 0 3px rgba(56, 139, 253, 0.1);
+        }
+
+        input::placeholder {
+            color: #6e7681;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        .hint {
+            font-size: 0.7rem;
+            color: #8b949e;
+            margin-top: 0.25rem;
+        }
+
+        .error {
+            font-size: 0.7rem;
+            color: #f85149;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: #238636;
+            color: #ffffff;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            margin-top: 0.5rem;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background: #2ea043;
+        }
+
+        .submit-button:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #8b949e;
+            padding: 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .message {
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+            display: none;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: rgba(35, 134, 54, 0.15);
+            border: 1px solid #238636;
+            color: #3fb950;
+        }
+
+        .message.error {
+            background: rgba(248, 81, 73, 0.15);
+            border: 1px solid #f85149;
+            color: #ff7b72;
+        }
+
+        .blocked-message {
+            background: linear-gradient(135deg, rgba(35, 134, 54, 0.1) 0%, rgba(46, 160, 67, 0.05) 100%);
+            border: 2px solid #238636;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blocked-message::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(35, 134, 54, 0.1) 0%, transparent 70%);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .blocked-message-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .success-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #238636 0%, #2ea043 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(35, 134, 54, 0.3);
+            animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw-check 0.8s ease-out 0.3s forwards;
+        }
+
+        @keyframes draw-check {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .blocked-message h2 {
+            color: #3fb950;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            animation: fade-in 0.5s ease-out 0.5s both;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .blocked-message h2 svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .blocked-message p {
+            color: #8b949e;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+            animation: fade-in 0.5s ease-out 0.7s both;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(35, 134, 54, 0.15);
+            color: #3fb950;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.75rem;
+            animation: fade-in 0.5s ease-out 0.9s both;
+        }
+
+        .status-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .contact-info {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid #21262d;
+            animation: fade-in 0.5s ease-out 1.1s both;
+        }
+
+        .contact-info p {
+            font-size: 0.8rem;
+            color: #6e7681;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="mainContainer">
         <div class="header">
             <svg class="github-logo" viewBox="0 0 16 16" fill="#e6edf3" aria-hidden="true">
                 <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
             </svg>
-            <h1>GitHub Testing Page</h1>
+            <h1>Giveaway Registration</h1>
+            <p class="subtitle">"Commit > Push > Repeat: An Introduction to Git and GitHub"</p>
+            
+            <div class="topic-info">
+                <div class="topic-title">Topic: "Your GitHub Journey: From Student Projects to a Developer Portfolio"</div>
+                <div class="speaker-name">Speaker: John Benedict M. Badilla</div>
+            </div>
         </div>
 
-        <div class="like-section">
-            <div class="counter-display">
-                <div class="counter" id="likeCounter">0</div>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required>
+                <div class="error" id="nameError">Please enter your full name</div>
             </div>
-            <div class="counter-label">Total Likes</div>
-            
-            <div class="button-group">
-                <button class="like-button" id="likeButton">
-                    <svg class="heart-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                        <path d="M7.655 14.916v-.001h-.002l-.006-.003-.018-.01a22.066 22.066 0 0 1-3.744-2.584C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.044 5.231-3.886 6.818a22.094 22.094 0 0 1-3.433 2.414 7.152 7.152 0 0 1-.31.17l-.018.01-.008.004a.75.75 0 0 1-.69 0Z"></path>
-                    </svg>
-                    <span>Like</span>
-                </button>
-                <button class="reset-button" id="resetButton">
-                    <span>Reset</span>
-                </button>
+
+            <div class="form-group">
+                <label for="studentId">Student ID <span class="required">*</span></label>
+                <input type="text" id="studentId" name="studentId" placeholder="24-1234" pattern="[0-9]{2}-[0-9]{4}" required>
+                <div class="hint">Format: YY-XXXX (e.g., 24-1234)</div>
+                <div class="error" id="studentIdError">Please enter a valid student ID (YY-XXXX)</div>
             </div>
+
+            <div class="form-group">
+                <label for="program">Program <span class="required">*</span></label>
+                <select id="program" name="program" required>
+                    <option value="">Select your program</option>
+                    <option value="BSCS">Bachelor of Science in Computer Science (BSCS)</option>
+                    <option value="BSIT">Bachelor of Science in Information Technology (BSIT)</option>
+                    <option value="BSIS">Bachelor of Science in Information Systems (BSIS)</option>
+                    <option value="BS Entrep">Bachelor of Science in Entrepreneurship (BS Entrep)</option>
+                    <option value="BSCPE">Bachelor of Science in Computer Engineering (BSCPE)</option>
+                    <option value="BSECE">Bachelor of Science in Electronics Engineering (BSECE)</option>
+                    <option value="BSIE">Bachelor of Science in Industrial Engineering (BSIE)</option>
+                    <option value="BSMA">Bachelor of Science in Management Accounting (BSMA)</option>
+                    <option value="BSA">Bachelor of Science in Accountancy (BSA)</option>
+                    <option value="BECEd">Bachelor of Early Childhood Education (BECEd)</option>
+                </select>
+                <div class="error" id="programError">Please select your program</div>
+            </div>
+
+            <div class="form-group">
+                <label for="section">Section <span class="required">*</span></label>
+                <input type="text" id="section" name="section" placeholder="SBCS-1A" pattern="[A-Z]{2,}-[0-9]{1,2}[A-Z]" required>
+                <div class="hint">Format: XXXX-#X (e.g., SBCS-1A)</div>
+                <div class="error" id="sectionError">Please enter a valid section (e.g., SBCS-1A)</div>
+            </div>
+
+            <button type="submit" class="submit-button" id="submitBtn">Submit Registration</button>
+        </form>
+
+        <div class="loading" id="loading">
+            Submitting your registration...
         </div>
+
+        <div class="message" id="message"></div>
 
         <div class="footer">
-            Powered by GitHub Pages
+            <div class="footer-badge">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                </svg>
+                <span>Built & Deployed with GitHub Pages</span>
+            </div>
+            <div class="footer-text">This registration form is hosted on GitHub Pages, demonstrating one of the powerful features covered in the talk!</div>
         </div>
     </div>
 
     <script>
-        // Get elements
-        const likeButton = document.getElementById('likeButton');
-        const resetButton = document.getElementById('resetButton');
-        const likeCounter = document.getElementById('likeCounter');
+        // Google Apps Script Web App URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxc_qAAChmxxznG2ZMcOuQly_IAiOdQSLgoXf2yAEIfEIiJBGXRBalyngcER1hMllDd/exec';
 
-        // Initialize counter from localStorage
-        let likes = parseInt(localStorage.getItem('likes')) || 0;
+        const form = document.getElementById('registrationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const message = document.getElementById('message');
+        const mainContainer = document.getElementById('mainContainer');
 
-        // Update display
-        likeCounter.textContent = likes;
+        // Generate device fingerprint
+        async function generateDeviceFingerprint() {
+            const components = [
+                navigator.userAgent,
+                navigator.language,
+                screen.colorDepth,
+                screen.width + 'x' + screen.height,
+                new Date().getTimezoneOffset(),
+                navigator.hardwareConcurrency || 'unknown',
+                navigator.deviceMemory || 'unknown'
+            ];
+            
+            const fingerprint = components.join('|');
+            const msgUint8 = new TextEncoder().encode(fingerprint);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            return hashHex;
+        }
 
-        // Like button click handler
-        likeButton.addEventListener('click', function() {
-            likes++;
+        // Check if device is already registered
+        async function checkDeviceRegistration() {
+            const deviceId = await generateDeviceFingerprint();
+            const registered = localStorage.getItem('deviceRegistered');
+            const storedDeviceId = localStorage.getItem('deviceId');
             
-            // Update display
-            likeCounter.textContent = likes;
+            if (registered === 'true' && storedDeviceId === deviceId) {
+                return true;
+            }
             
-            // Save to localStorage
-            localStorage.setItem('likes', likes);
+            return false;
+        }
+
+        // Show blocked message
+        function showBlockedMessage() {
+            mainContainer.innerHTML = `
+                <div class="blocked-message">
+                    <div class="blocked-message-content">
+                        <div class="success-icon">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <h2>
+                            <svg viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm3.78-9.72a.751.751 0 0 0-.018-1.042.751.751 0 0 0-1.042-.018L6.75 9.19 5.28 7.72a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042l2 2a.75.75 0 0 0 1.06 0Z"></path>
+                            </svg>
+                            Already Registered
+                        </h2>
+                        <p>Great news! This device has already been successfully registered for the giveaway. Your entry is confirmed and you're all set for the event.</p>
+                        
+                        <div class="status-badge">
+                            <svg viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm3.78-9.72a.751.751 0 0 0-.018-1.042.751.751 0 0 0-1.042-.018L6.75 9.19 5.28 7.72a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042l2 2a.75.75 0 0 0 1.06 0Z"></path>
+                            </svg>
+                            <span>Registration Confirmed</span>
+                        </div>
+
+                        <div class="contact-info">
+                            <p>Errors? Bugs? Questions? Please contact the event organizers or ushers for assistance.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Validate form
+        function validateForm() {
+            let isValid = true;
             
-            // Add animation class
-            likeButton.classList.add('liked');
+            const name = document.getElementById('name').value.trim();
+            if (name === '') {
+                document.getElementById('nameError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('nameError').classList.remove('show');
+            }
             
-            // Remove animation class after animation completes
-            setTimeout(() => {
-                likeButton.classList.remove('liked');
-            }, 300);
+            const studentId = document.getElementById('studentId').value.trim();
+            const studentIdPattern = /^[0-9]{2}-[0-9]{4}$/;
+            if (!studentIdPattern.test(studentId)) {
+                document.getElementById('studentIdError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('studentIdError').classList.remove('show');
+            }
+            
+            const program = document.getElementById('program').value;
+            if (program === '') {
+                document.getElementById('programError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('programError').classList.remove('show');
+            }
+            
+            const section = document.getElementById('section').value.trim().toUpperCase();
+            const sectionPattern = /^[A-Z]{2,}-[0-9]{1,2}[A-Z]$/;
+            if (!sectionPattern.test(section)) {
+                document.getElementById('sectionError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('sectionError').classList.remove('show');
+            }
+            
+            return isValid;
+        }
+
+        // Show message
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = `message show ${type}`;
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            // Disable form and show loading
+            submitBtn.disabled = true;
+            loading.classList.add('show');
+            message.classList.remove('show');
+            
+            try {
+                const deviceId = await generateDeviceFingerprint();
+                
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    studentId: document.getElementById('studentId').value.trim(),
+                    program: document.getElementById('program').value,
+                    section: document.getElementById('section').value.trim().toUpperCase(),
+                    deviceId: deviceId,
+                    timestamp: new Date().toISOString()
+                };
+                
+                
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Since we're using no-cors, we can't read the response
+                // Assume success if no error is thrown
+                localStorage.setItem('deviceRegistered', 'true');
+                localStorage.setItem('deviceId', deviceId);
+                
+                showMessage('Registration submitted successfully!', 'success');
+                form.reset();
+                
+                setTimeout(() => {
+                    showBlockedMessage();
+                }, 2000);
+                
+            } catch (error) {
+                showMessage('An error occurred. Please try again.', 'error');
+                submitBtn.disabled = false;
+            } finally {
+                loading.classList.remove('show');
+            }
         });
 
-        // Reset button click handler
-        resetButton.addEventListener('click', function() {
-            if (confirm('Are you sure you want to reset the counter?')) {
-                likes = 0;
-                
-                likeCounter.textContent = likes;
-                
-                localStorage.setItem('likes', likes);
+        // Check registration status immediately
+        function checkAndShowIfRegistered() {
+            const registered = localStorage.getItem('deviceRegistered');
+            if (registered === 'true') {
+                showBlockedMessage();
+                return true;
             }
+            return false;
+        }
+
+        // Run immediately
+        checkAndShowIfRegistered();
+
+        // Also check on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAndShowIfRegistered();
+        });
+
+        // Auto-uppercase section input
+        document.getElementById('section').addEventListener('input', (e) => {
+            e.target.value = e.target.value.toUpperCase();
         });
     </script>
 </body>
